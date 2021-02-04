@@ -6,6 +6,8 @@ Object.defineProperty(exports, '__esModule', {
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 var _querystring = require('querystring');
 
 var _querystring2 = _interopRequireDefault(_querystring);
@@ -30,9 +32,13 @@ exports['default'] = {
   },
 
   getSrc: function getSrc(params) {
-    var src = 'https://maps.googleapis.com/maps/api/js';
-    src += '?callback=mapsCallback&';
-    src += _querystring2['default'].stringify(params);
+    var src = params.src;
+
+    var rest_params = _objectWithoutProperties(params, ['src']);
+
+    src = src || 'https://maps.googleapis.com/maps/api/js';
+    // src += '?callback=mapsCallback&';
+    src += _querystring2['default'].stringify(rest_params);
     return src;
   },
 
