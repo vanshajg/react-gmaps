@@ -20,9 +20,10 @@ export default {
   },
 
   getSrc(params) {
-    let src = 'https://maps.googleapis.com/maps/api/js';
-    src += '?callback=mapsCallback&';
-    src += querystring.stringify(params);
+    let {src, ...rest_params} = params;
+    src = src || 'https://maps.googleapis.com/maps/api/js';
+    // src += '?callback=mapsCallback&';
+    src += querystring.stringify(rest_params);
     return src;
   },
 
